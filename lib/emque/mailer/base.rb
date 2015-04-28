@@ -1,5 +1,5 @@
 require "erb"
-require "sendgrid"
+require "sendgrid-ruby"
 
 module Emque
   module Mailer
