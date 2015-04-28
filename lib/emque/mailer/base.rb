@@ -51,7 +51,7 @@ module Emque
       def initialize
         self.mailer = SendGrid::Mail.new
         smtpapi.add_category Emque::Consuming.application.config.app_name
-        smtpapi.add_category self.class.name.underscore
+        smtpapi.add_category Inflecto.underscore(self.class.name)
         self
       end
 
@@ -177,10 +177,10 @@ module Emque
 
       def template_filename(type)
         File.join(
-          Clie.root,
+          Emque::Consuming.application.root,
           "service",
           "views",
-          self.class.name.underscore,
+          Inflecto.underscore(self.class.name),
           "#{template}.#{type}.erb"
         )
       end
